@@ -15,7 +15,7 @@ currentCal :: IO String
 currentCal = do
   currentTime <- getCurrentTime
   (y, m, _) <- return . toGregorian . utctDay $ currentTime
-  return . intercalate "\n" $ monthCal y (toEnum m)
+  return . intercalate "\n" .monthCal y $ toEnum (m - 1)
 
 monthCal :: Year -> Month -> [String]
 monthCal y m = header : dayNames : monthDays y m
