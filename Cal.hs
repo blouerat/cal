@@ -50,7 +50,7 @@ showDayOfMonth i
 
 center :: Int -> String -> String
 center width str = replicate marginLeft ' ' ++ str ++ replicate marginRight ' '
-  where totalMargin = max 0 (20 - length str)
+  where totalMargin = max 0 (width - length str)
         marginLeft = div totalMargin 2
         marginRight = totalMargin - marginLeft
 
