@@ -15,11 +15,20 @@ currentMonthCal :: IO String
 currentMonthCal = do
   currentTime <- getCurrentTime
   (y, m, _) <- return . toGregorian . utctDay $ currentTime
-  return . unlines . monthCal y $ toEnum (m - 1)
+  return . unlines . (monthCal True y) $ toEnum (m - 1)
 
-monthCal :: Year -> Month -> [String]
-monthCal y m = header : dayNames : monthDays y m
-  where header = center 20 $ show m ++ " " ++ show y
+yearCal :: Year -> [String]
+yearCal y = center 60 (show y) : "" : concat (map f (grouped 3 (map (monthCal False y) months)))
+  where months :: [Month]
+        months = enumFrom . toEnum $ 0
+        f :: [[String]] -> [String]
+        f = foldl1 (zipWith ((++) . (++ "  ")))
+        yearLine :: [String] -> String
+        yearLine = intercalate "  "
+
+monthCal :: Bool -> Year -> Month -> [String]
+monthCal displayYear year month = header : dayNames : monthDays year month
+  where header = center 20 $ if displayYear then show month ++ " " ++ show year else show month
 
 dayNames :: String
 dayNames = intercalate " " $ map (take 2 . show) days
