@@ -1,6 +1,6 @@
 module Main where
 
-import Cal (currentCal)
+import Cal (currentMonthCal)
 
 main :: IO ()
-main = currentCal >>= putStrLn
+main = currentMonthCal >>= putStrLn

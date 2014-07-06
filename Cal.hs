@@ -11,11 +11,11 @@ data Month = January | February | March | April | May | June | July | August | S
 type Year = Integer
 type DayOfMonth = Int
 
-currentCal :: IO String
-currentCal = do
+currentMonthCal :: IO String
+currentMonthCal = do
   currentTime <- getCurrentTime
   (y, m, _) <- return . toGregorian . utctDay $ currentTime
-  return . intercalate "\n" .monthCal y $ toEnum (m - 1)
+  return . unlines . monthCal y $ toEnum (m - 1)
 
 monthCal :: Year -> Month -> [String]
 monthCal y m = header : dayNames : monthDays y m
