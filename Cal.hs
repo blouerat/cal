@@ -1,4 +1,4 @@
-module Cal (currentCal) where
+module Cal where
 
 import Data.List
 import Data.Time
@@ -38,7 +38,7 @@ lastDay y m = day
 
 firstWeekDay :: Year -> Month -> DayOfWeek
 firstWeekDay y m = dayOfWeek day
-  where (_, _, day) = toWeekDate $ fromGregorian y (fromEnum m) 1
+  where (_, _, day) = toWeekDate $ fromGregorian y (fromEnum m + 1) 1
         dayOfWeek :: Int -> DayOfWeek
         dayOfWeek 7 = Sunday
         dayOfWeek i = toEnum i
