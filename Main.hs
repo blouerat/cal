@@ -3,4 +3,4 @@ module Main where
 import Cal (currentMonthCal)
 
 main :: IO ()
-main = currentMonthCal >>= putStrLn
+main = currentMonthCal >>= putStr
