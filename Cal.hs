@@ -34,7 +34,7 @@ monthDays y m = map (intercalate " ") $ grouped 7 $ marginLeft ++ days ++ margin
 
 lastDay :: Year -> Month -> DayOfMonth
 lastDay y m = day
-  where (_, _, day) = toGregorian $ fromGregorian y (fromEnum m) 31
+  where (_, _, day) = toGregorian $ fromGregorian y (fromEnum m + 1) 31
 
 firstWeekDay :: Year -> Month -> DayOfWeek
 firstWeekDay y m = dayOfWeek day
