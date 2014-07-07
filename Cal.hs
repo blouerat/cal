@@ -7,7 +7,7 @@ import Data.Time.Calendar.WeekDate
 import Control.Monad
 
 data DayOfWeek = Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday deriving (Show, Enum, Bounded)
-data Month = January | February | March | April | May | June | July | August | September | October | November | December deriving (Show, Enum, Bounded)
+data Month = January | February | March | April | May | June | July | August | September | October | November | December deriving (Show, Read, Enum, Bounded)
 type Year = Integer
 type DayOfMonth = Int
 
