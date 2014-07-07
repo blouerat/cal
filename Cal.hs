@@ -17,12 +17,12 @@ currentMonthCal = do
   (y, m, _) <- return . toGregorian . utctDay $ currentTime
   return . unlines . (monthCal True y) $ toEnum (m - 1)
 
-yearCal :: Year -> [String]
-yearCal y = center 60 (show y) : "" : concat (map f (grouped 3 (map (monthCal False y) months)))
+yearCal :: Year -> String
+yearCal y = unlines $ (center 60 $ show y) : "" : (concatMap mergeMonths $ grouped 3 . map (monthCal False y) $ months)
   where months :: [Month]
         months = enumFrom . toEnum $ 0
-        f :: [[String]] -> [String]
-        f = foldl1 (zipWith ((++) . (++ "  ")))
+        mergeMonths :: [[String]] -> [String]
+        mergeMonths = foldl1 (zipWith ((++) . (++ "  ")))
         yearLine :: [String] -> String
         yearLine = intercalate "  "
 
